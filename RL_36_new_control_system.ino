@@ -71,6 +71,10 @@ void ignition() {
 
 
 void loop() {
+  while(runCondition != 1){
+    if(
+  }
+  logPressures();
   
   shutDownValves();
   // Wait for user to send start command
