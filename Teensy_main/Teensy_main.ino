@@ -2,16 +2,8 @@
 #include <NativeEthernet.h>
 #include <NativeEthernetUdp.h>
 
-// Pin delcarations to relay
-int oxValve = 0
-int fuelValve = 1
-int purgeValve = 2
-int igniter = 3
-int redLight = 4 
-int yellowLight = 5
-int greenLight = 6
-int buzzer = 7
-
+uint16_t currentSeqNum = 0
+char packetBuffer[8];  // buffer to hold incoming packet,
 
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
@@ -20,15 +12,13 @@ IPAddress ip(10, 10, 10, 75);
 
 unsigned int localPort = 8080;      // local port to listen on
 
-char packetBuffer[8];  // buffer to hold incoming packet,
-
 EthernetUDP Udp;
 
 typedef struct{
-  uint32_t seqNum;
-  uint16_t control;
-  uint16_t state;
-} command_t;
+  uint16_t pinNum;
+  uint16_t currentState;
+  uint16_t controlNum;
+} relay_t;
 
 typedef struct{
   uint16_t oxValve;
