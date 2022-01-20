@@ -17,7 +17,7 @@ states:
 0 = off
 1 = on
 
-Output pins to relay:
+Output pins to relay:      // Also corresponds to index in replyBuffer array
 0 = oxValve
 1 = fuelValve
 2 = purgeValve
